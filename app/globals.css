@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  background: #121212;
+  color: #e0e0e0;
+  font-family: system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+}
+
+/* Neumorphism Classes */
+.neu-card {
+  background: #121212;
+  box-shadow: 12px 12px 24px #0a0a0a, -12px -12px 24px #1e1e1e;
+  border-radius: 1rem;
+}
+
+.neu-input {
+  background: #121212;
+  box-shadow: inset 6px 6px 12px #0a0a0a, inset -6px -6px 12px #1e1e1e;
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.neu-input:focus {
+  box-shadow: inset 6px 6px 12px #0a0a0a, inset -6px -6px 12px #1e1e1e, 0px 0px 10px rgba(255, 106, 0, 0.3);
+  outline: none;
+}
+
+.neu-button {
+  background: #121212;
+  box-shadow: 6px 6px 12px #0a0a0a, -6px -6px 12px #1e1e1e;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-button:hover {
+  box-shadow: 4px 4px 8px #0a0a0a, -4px -4px 8px #1e1e1e;
+}
+
+.neu-button:active {
+  box-shadow: inset 4px 4px 8px #0a0a0a, inset -4px -4px 8px #1e1e1e;
+}
+
+.neu-button-primary {
+  background: #FF6A00;
+  color: #fff;
+  box-shadow: 6px 6px 12px #0a0a0a, -6px -6px 12px #1e1e1e;
+}
+
+.neu-button-primary:hover {
+  background: #ff7d1a;
+  box-shadow: 4px 4px 8px #0a0a0a, -4px -4px 8px #1e1e1e;
+}
+
+.neu-button-primary:active {
+  box-shadow: inset 4px 4px 8px #cc5500, inset -4px -4px 8px #ff7d1a;
+}
+
+.neu-chip {
+  background: #121212;
+  box-shadow: 4px 4px 8px #0a0a0a, -4px -4px 8px #1e1e1e;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-chip:hover {
+  box-shadow: 2px 2px 4px #0a0a0a, -2px -2px 4px #1e1e1e;
+  color: #FF6A00;
+}
+
+.neu-chip.active {
+  box-shadow: inset 4px 4px 8px #0a0a0a, inset -4px -4px 8px #1e1e1e;
+  color: #FF6A00;
+}
+
+/* Smooth Icon Transition */
+.icon-smooth {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.neu-button:hover .icon-smooth {
+  transform: scale(1.15) rotate(-5deg);
+}
+
+.neu-chip:hover .icon-smooth {
+  transform: scale(1.2);
+}
+
+/* Loading Skeleton 3 Dots */
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #FF6A00;
+  border-radius: 50%;
+  display: inline-block;
+}
