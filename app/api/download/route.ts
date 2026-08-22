@@ -9,7 +9,7 @@ export const maxDuration = 60;
 // Fungsi verifikasi hCaptcha ke server mereka
 async function verifyToken(token: string, ip: string): Promise<boolean> {
   const payload = {
-    secret: process.env.HCAPTCHA_SECRET || "your_secret_key",
+    secret: process.env.HCAPTCHA_SECRET,
     response: token,
     remoteip: ip,
     sitekey: process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY || "c07c54d6-d866-402e-91e0-19528d52e66c",
