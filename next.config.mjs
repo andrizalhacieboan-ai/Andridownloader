@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ['tough-cookie', 'axios-cookiejar-support', 'node-fetch']
+    serverComponentsExternalPackages: ['tough-cookie', 'axios-cookiejar-support']
   },
   webpack: (config) => {
     config.resolve.extensionAlias = {
