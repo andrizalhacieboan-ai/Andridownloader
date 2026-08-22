@@ -12,6 +12,7 @@ export async function processDownload(url: string) {
   try {
     switch(platform) {
       case 'tiktok': {
+        // Path ke scrapers/tiktok.cjs
         const { scrapeTikTok } = await import('../scrapers/tiktok.cjs');
         const res = await scrapeTikTok(url);
         data = res.data;
@@ -121,4 +122,4 @@ export async function processDownload(url: string) {
     console.error(`Scraper Error [${platform}]:`, error.message);
     throw { type: 'SCRAPER_ERROR', message: 'Gagal mengambil media. Silakan coba lagi.' };
   }
-          }
+}
