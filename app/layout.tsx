@@ -25,13 +25,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Script 
           src="https://pl30973511.profitableratecpmnetwork.com/56/20/11/56201152cd774433823838ab783b6cc1.js" 
           strategy="afterInteractive"
-        ></Script>
+        />
         
         {/* Iklan Adsterra - Social Bar */}
         <Script 
           src="https://pl30973512.profitableratecpmnetwork.com/cd/ac/8f/cdac8f4a73fb58f8d1e2474ecbbb84a7.js" 
           strategy="afterInteractive"
-        ></Script>
+        />
+
+        {/* Pendaftaran Service Worker PropellerAds */}
+        <Script id="propeller-sw" strategy="afterInteractive">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                  console.log('PropellerAds SW registered with scope: ', registration.scope);
+                }).catch(function(err) {
+                  console.log('PropellerAds SW registration failed: ', err);
+                });
+              });
+            }
+          `}
+        </Script>
 
         {children}
       </body>
