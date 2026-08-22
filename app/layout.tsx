@@ -15,6 +15,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
+      <head>
+        <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );
