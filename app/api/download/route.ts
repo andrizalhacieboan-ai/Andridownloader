@@ -3,6 +3,7 @@ import { getClientIp, hashIp } from '@/lib/utils';
 import { checkAndIncrementRateLimit } from '@/lib/rate-limit';
 import { processDownload } from '@/lib/scraper-manager';
 import { db } from '@/lib/db';
+export const maxDuration = 60;
 
 export async function POST(req: Request) {
   try {
