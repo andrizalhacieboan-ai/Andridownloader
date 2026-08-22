@@ -2,19 +2,59 @@ import { NextResponse } from 'next/server';
 import { getClientIp, hashIp } from '@/lib/utils';
 import { checkAndIncrementRateLimit } from '@/lib/rate-limit';
 import { processDownload } from '@/lib/scraper-manager';
-import { db } from '@/lib/db';
+import { db, ensureDbInitialized } from '@/lib/db';
+
 export const maxDuration = 60;
 
+// Fungsi verifikasi hCaptcha ke server mereka
+async function verifyToken(token: string, ip: string): Promise<boolean> {
+  const payload = {
+    secret: process.env.HCAPTCHA_SECRET || "your_secret_key",
+    response: token,
+    remoteip: ip,
+    sitekey: process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY || "c07c54d6-d866-402e-91e0-19528d52e66c",
+  };
+  
+  const params = new URLSearchParams(payload);
+  const res = await fetch("https://api.hcaptcha.com/siteverify", {
+    method: "POST",
+    body: params,
+  });
+  
+  const j = await res.json();
+  return j.success === true;
+}
+
 export async function POST(req: Request) {
+  await ensureDbInitialized();
+  
   try {
     const body = await req.json();
     const url = body.url;
+    const captchaToken = body.captchaToken;
 
     if (!url || typeof url !== 'string') {
       return NextResponse.json({ success: false, error: 'URL tidak valid' }, { status: 400 });
     }
 
+    // Validasi hCaptcha wajib dilakukan sebelum proses scrape
+    if (!captchaToken || typeof captchaToken !== 'string') {
+      return NextResponse.json(
+        { success: false, error: 'Verifikasi Captcha gagal.' }, 
+        { status: 403 }
+      );
+    }
+
     const ip = getClientIp(req);
+    const isHuman = await verifyToken(captchaToken, ip);
+    
+    if (!isHuman) {
+      return NextResponse.json(
+        { success: false, error: 'Verifikasi Captcha gagal. Pastikan Anda bukan bot.' }, 
+        { status: 403 }
+      );
+    }
+
     const ipHash = hashIp(ip);
 
     // 1. Check Limit (Atomic)
