@@ -9,7 +9,8 @@ export const maxDuration = 60;
 // Fungsi verifikasi hCaptcha ke server mereka
 async function verifyToken(token: string, ip: string): Promise<boolean> {
   const payload = {
-    secret: process.env.HCAPTCHA_SECRET,
+    // GANTI INI DENGAN SECRET KEY ASLI ANDA
+    secret: process.env.HCAPTCHA_SECRET || "ES_0a7d8b0f4b934cc6887956958086e6c8", 
     response: token,
     remoteip: ip,
     sitekey: process.env.NEXT_PUBLIC_HCAPTCHA_SITEKEY || "c07c54d6-d866-402e-91e0-19528d52e66c",
@@ -22,6 +23,7 @@ async function verifyToken(token: string, ip: string): Promise<boolean> {
   });
   
   const j = await res.json();
+  console.log("hCaptcha Response:", j); // Ini akan membantu melihat error asli dari hCaptcha di Vercel Logs
   return j.success === true;
 }
 
