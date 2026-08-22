@@ -48,6 +48,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
 
+        {/* Iklan quge5.com */}
+        <Script 
+          src="https://quge5.com/88/tag.min.js" 
+          strategy="afterInteractive"
+          data-zone="272363"
+          data-cfasync="false"
+        />
+
         {children}
       </body>
     </html>
