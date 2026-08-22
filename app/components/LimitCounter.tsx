@@ -1,4 +1,4 @@
-import { LimitDial } from 'lucide-react';
+import { Gauge } from 'lucide-react';
 
 export default function LimitCounter({ used, limit, resetAt }: { used: number; limit: number; resetAt: string }) {
   const remaining = limit - used;
@@ -7,7 +7,9 @@ export default function LimitCounter({ used, limit, resetAt }: { used: number; l
   return (
     <div className="neu-card p-4 flex items-center justify-between mb-6">
       <div className="flex items-center gap-3">
-        <div className="text-orange-500"><LimitDial className="icon-smooth" size={24} /></div>
+        <div className="text-orange-500">
+          <Gauge className="icon-smooth" size={24} />
+        </div>
         <div>
           <p className="text-sm font-bold">Daily Limit</p>
           <p className="text-xs text-gray-400">
@@ -16,11 +18,11 @@ export default function LimitCounter({ used, limit, resetAt }: { used: number; l
         </div>
       </div>
       <div className="text-right">
-        <div className="flex gap-1 mb-1">
+        <div className="flex gap-1 mb-1 justify-end">
           {Array.from({ length: limit }).map((_, i) => (
             <div 
               key={i} 
-              className={`w-2 h-4 rounded-sm ${i < used ? 'bg-orange-500' : 'bg-gray-700'}`}
+              className={`w-2 h-4 rounded-sm transition-colors ${i < used ? 'bg-orange-500' : 'bg-gray-700'}`}
             />
           ))}
         </div>
