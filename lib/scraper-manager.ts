@@ -12,7 +12,7 @@ export async function processDownload(url: string) {
   try {
     switch(platform) {
       case 'tiktok': {
-        const { scrapeTikTok } = await import('../scraper/tiktok.cjs');
+        const { scrapeTikTok } = await import('../scrapers/tiktok.cjs');
         const res = await scrapeTikTok(url);
         data = res.data;
         
@@ -32,7 +32,7 @@ export async function processDownload(url: string) {
       }
       
       case 'instagram': {
-        const { scrapeInstagram } = await import('../scraper/instagram.cjs');
+        const { scrapeInstagram } = await import('../scrapers/instagram.cjs');
         const res = await scrapeInstagram(url);
         data = res.data;
         
@@ -53,7 +53,7 @@ export async function processDownload(url: string) {
       }
       
       case 'soundcloud': {
-        const soundcloud = await import('../scraper/soundcloud.mjs');
+        const soundcloud = await import('../scrapers/soundcloud.mjs');
         const data = await soundcloud.get(url);
         
         if (data.kind === 'track') {
@@ -83,7 +83,7 @@ export async function processDownload(url: string) {
       }
       
       case 'spotify': {
-        const { getSpotifyTrack } = await import('../scraper/spotify.mjs');
+        const { getSpotifyTrack } = await import('../scrapers/spotify.mjs');
         const res = await getSpotifyTrack(url);
         if (!res.status) throw new Error('Spotify fetch failed');
         
@@ -99,7 +99,7 @@ export async function processDownload(url: string) {
       }
       
       case 'youtube': {
-        const { scrapeYtmp3 } = await import('../scraper/ytmp3.cjs');
+        const { scrapeYtmp3 } = await import('../scrapers/ytmp3.cjs');
         const res = await scrapeYtmp3(url, 'mp3'); // default to mp3
         if (res.status !== 'success') throw new Error(res.message);
         
