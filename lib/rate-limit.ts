@@ -1,7 +1,8 @@
-import { db } from './db';
+import { db, ensureDbInitialized } from './db';
 import { DAILY_LIMIT, WINDOW_MS } from './config';
 
 export async function checkAndIncrementRateLimit(ipHash: string) {
+  await ensureDbInitialized(); // Pastikan DB sudah ada tabelnya
   const now = Date.now();
 
   // Atomic update: only increment if under limit and within window
@@ -50,6 +51,7 @@ export async function checkAndIncrementRateLimit(ipHash: string) {
 }
 
 export async function getUsage(ipHash: string) {
+  await ensureDbInitialized(); // Pastikan DB sudah ada tabelnya
   const now = Date.now();
   const row = await db.execute({ sql: `SELECT * FROM ip_usage WHERE ip_hash = ?`, args: [ipHash] });
   
