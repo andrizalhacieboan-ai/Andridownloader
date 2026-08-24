@@ -24,6 +24,7 @@ export default function Home() {
             { name: 'YouTube', icon: Youtube, desc: 'MP3 & MP4' },
             { name: 'SoundCloud', icon: Cloud, desc: 'Track & Playlist' },
             { name: 'Spotify', icon: Music, desc: 'Track' },
+            { name: 'Facebook', icon: Facebook, desc: 'Video, MP3 & Photo' },
           ].map((p) => (
             <div key={p.name} className="neu-chip p-4 rounded-xl flex flex-col items-center gap-2 text-center">
               <p.icon className="icon-smooth text-orange-500" size={24} />
