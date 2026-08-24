@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   experimental: {
-    serverComponentsExternalPackages: ['tough-cookie', 'axios-cookiejar-support']
+    serverComponentsExternalPackages: [
+      'tough-cookie',
+      'axios-cookiejar-support',
+      'cheerio',
+      'undici'
+    ]
   },
   webpack: (config) => {
     config.resolve.extensionAlias = {
