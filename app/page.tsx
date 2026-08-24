@@ -1,5 +1,5 @@
 import DownloaderForm from './components/DownloaderForm';
-import { Music, Video, Instagram, Youtube, Cloud } from 'lucide-react';
+import { Music, Video, Instagram, Youtube, Cloud, Facebook } from 'lucide-react';
 
 export default function Home() {
   return (
