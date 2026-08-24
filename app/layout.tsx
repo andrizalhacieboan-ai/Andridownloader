@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import Script from 'next/script';
 import './globals.css';
 
@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: 'ANDRI ALL DOWNLOADER — Download Video, Audio & Media',
   description: 'Download video, photo, and audio from supported platforms quickly with Andri All Downloader.',
   keywords: ['video downloader', 'TikTok downloader', 'Instagram downloader', 'YouTube downloader', 'SoundCloud downloader', 'Spotify downloader', 'media downloader'],
+  manifest: '/manifest.json',
   openGraph: {
     title: 'ANDRI ALL DOWNLOADER',
     description: 'Download video, photo, and audio from supported platforms quickly.',
@@ -13,10 +14,21 @@ export const metadata: Metadata = {
   }
 };
 
+export const viewport: Viewport = {
+  themeColor: '#121212',
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="dark">
       <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#121212" />
+        {/* Apple touch icon for iOS PWA */}
+        <link rel="apple-touch-icon" href="/media/logo1.png" />
+        
         {/* Script hCaptcha */}
         <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
       </head>
